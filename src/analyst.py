@@ -4,10 +4,21 @@ from typing import Dict, Optional
 
 class AIAnalyst:
     def __init__(self):
-        api_key = os.getenv("OPENAI_API_KEY")
-        if not api_key:
-            raise ValueError("OPENAI_API_KEY environment variable is not set.")
-        self.client = OpenAI(api_key=api_key)
+        self.api_key = os.getenv("OPENAI_API_KEY")
+        self.base_url = None
+        self.model = "gpt-4o-mini"
+
+        # Check for OpenRouter override
+        openrouter_key = os.getenv("OPENROUTER_API_KEY")
+        if openrouter_key:
+            self.api_key = openrouter_key
+            self.base_url = "https://openrouter.ai/api/v1"
+            self.model = "openai/gpt-4o-mini"
+
+        if not self.api_key:
+            raise ValueError("Neither OPENAI_API_KEY nor OPENROUTER_API_KEY is set.")
+            
+        self.client = OpenAI(api_key=self.api_key, base_url=self.base_url)
 
     def analyze_stock(self, market_data: Dict) -> str:
         """
@@ -29,7 +40,7 @@ class AIAnalyst:
 
         try:
             response = self.client.chat.completions.create(
-                model="gpt-4o-mini",
+                model=self.model,
                 messages=[
                     {"role": "system", "content": "You are a helpful financial assistant."},
                     {"role": "user", "content": prompt}
