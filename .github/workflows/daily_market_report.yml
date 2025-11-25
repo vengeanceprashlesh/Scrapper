@@ -25,7 +25,6 @@ jobs:
 
     - name: Run Daily Report
       env:
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         EMAIL_USER: ${{ secrets.EMAIL_USER }}
         EMAIL_PASS: ${{ secrets.EMAIL_PASS }}

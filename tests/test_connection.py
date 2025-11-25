@@ -33,24 +33,19 @@ def test_connections():
     except Exception as e:
         print(f"❌ yfinance connection failed: {e}")
 
-    # 3. Test OpenAI / OpenRouter
-    print("\nTesting AI Client initialization...")
+    # 3. Test OpenRouter
+    print("\nTesting OpenRouter Client initialization...")
     try:
-        api_key = os.getenv("OPENAI_API_KEY")
         openrouter_key = os.getenv("OPENROUTER_API_KEY")
         
         if openrouter_key:
             print(f"✅ OpenRouter API Key detected.")
             client = OpenAI(api_key=openrouter_key, base_url="https://openrouter.ai/api/v1")
             print("✅ OpenRouter client initialized successfully.")
-        elif api_key:
-            print(f"✅ OpenAI API Key detected.")
-            client = OpenAI(api_key=api_key)
-            print("✅ OpenAI client initialized successfully.")
         else:
-            print("❌ No AI API Key (OpenAI or OpenRouter) missing, skipping client init.")
+            print("❌ OPENROUTER_API_KEY missing, skipping client init.")
     except Exception as e:
-        print(f"❌ AI client initialization failed: {e}")
+        print(f"❌ OpenRouter client initialization failed: {e}")
 
     # 4. Mock Email (Print only)
     print("\nTesting Email Configuration (Mock)...")

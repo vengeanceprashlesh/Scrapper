@@ -4,19 +4,12 @@ from typing import Dict, Optional
 
 class AIAnalyst:
     def __init__(self):
-        self.api_key = os.getenv("OPENAI_API_KEY")
-        self.base_url = None
-        self.model = "gpt-4o-mini"
-
-        # Check for OpenRouter override
-        openrouter_key = os.getenv("OPENROUTER_API_KEY")
-        if openrouter_key:
-            self.api_key = openrouter_key
-            self.base_url = "https://openrouter.ai/api/v1"
-            self.model = "openai/gpt-4o-mini"
+        self.api_key = os.getenv("OPENROUTER_API_KEY")
+        self.base_url = "https://openrouter.ai/api/v1"
+        self.model = "openai/gpt-4o-mini"
 
         if not self.api_key:
-            raise ValueError("Neither OPENAI_API_KEY nor OPENROUTER_API_KEY is set.")
+            raise ValueError("OPENROUTER_API_KEY environment variable is not set.")
             
         self.client = OpenAI(api_key=self.api_key, base_url=self.base_url)
 
