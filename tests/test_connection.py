@@ -12,7 +12,7 @@ def test_connections():
     load_dotenv()
 
     # 1. Check Environment Variables
-    required_vars = ["OPENAI_API_KEY", "EMAIL_USER", "EMAIL_PASS"]
+    required_vars = ["OPENROUTER_API_KEY", "EMAIL_USER", "EMAIL_PASS", "RECIPIENT_EMAIL"]
     missing_vars = [var for var in required_vars if not os.getenv(var)]
     
     if missing_vars:
