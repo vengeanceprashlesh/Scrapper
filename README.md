@@ -41,6 +41,9 @@ A Python-based automated tool that fetches daily stock market data, performs AI-
    EMAIL_USER=your_email@gmail.com
    EMAIL_PASS=your_gmail_app_password
    RECIPIENT_EMAIL=recipient_email@example.com
+   
+   # Optional: Custom Stock Targets (comma-separated)
+   STOCK_TARGETS=AAPL,TSLA,NVDA,BTC-USD,ETH-USD
    ```
 
    > **Note**: For Gmail, you must use an **App Password**, not your regular login password. Go to Google Account > Security > 2-Step Verification > App passwords to generate one.
@@ -48,8 +51,6 @@ A Python-based automated tool that fetches daily stock market data, performs AI-
 ## Usage
 
 Run the main script to generate and send the daily report:
-
-```bash
 python main.py
 ```
 

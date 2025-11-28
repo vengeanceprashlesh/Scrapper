@@ -10,7 +10,9 @@ load_dotenv()
 
 def main():
     # Configuration
-    TARGETS = ["AAPL", "TSLA", "NVDA", "BTC-USD", "ETH-USD"]
+    default_targets = ["AAPL", "TSLA", "NVDA", "BTC-USD", "ETH-USD"]
+    env_targets = os.getenv("STOCK_TARGETS")
+    TARGETS = [t.strip() for t in env_targets.split(",")] if env_targets else default_targets
     RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
 
     if not RECIPIENT_EMAIL:
